@@ -3,147 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALERTE SÉCURITÉ - VERROUILLE !</title>
+    <title>SÉCURITÉ - POSTE NON VERROUILLÉ</title>
     <style>
         :root {
-            --speed: 0.5s;
-        }
-
-        /* Flash de fond ultra violent */
-        @keyframes trippy-bg {
-            0% { background-color: #ff0000; filter: hue-rotate(0deg); }
-            20% { background-color: #00ff00; }
-            40% { background-color: #0000ff; }
-            60% { background-color: #ffff00; }
-            80% { background-color: #ff00ff; }
-            100% { background-color: #00ffff; filter: hue-rotate(360deg); }
-        }
-
-        /* Secousses de l'écran */
-        @keyframes earthquake {
-            0% { transform: translate(0,0) scale(1); }
-            10% { transform: translate(-10px, 5px) scale(1.02); }
-            20% { transform: translate(10px, -5px) scale(0.98); }
-            30% { transform: translate(-5px, -10px) scale(1.05); }
-            40% { transform: translate(5px, 10px) scale(0.95); }
-            100% { transform: translate(0,0) scale(1); }
-        }
-
-        /* Animation de distorsion et de couleur du texte */
-        @keyframes strobe {
-            0% { transform: scale(1) skew(0deg); color: #fff; text-shadow: 10px 10px #ff0000, -10px -10px #0000ff; filter: blur(0px); }
-            25% { transform: scale(1.3) skew(10deg); color: #0f0; text-shadow: -10px 5px #f0f, 10px -5px #ff0; filter: blur(2px); }
-            50% { transform: scale(0.8) skew(-10deg); color: #00f; text-shadow: 15px -10px #0ff, -15px 10px #f00; filter: blur(5px); }
-            75% { transform: scale(1.5) skew(5deg); color: #ff0; text-shadow: -5px 15px #00f, 5px -15px #0f0; filter: blur(1px); }
-            100% { transform: scale(1) skew(0deg); color: #fff; text-shadow: 10px 10px #ff0000, -10px -10px #0000ff; filter: blur(0px); }
-        }
-
-        /* Rotation folle */
-        @keyframes hyper-spin {
-            0% { transform: rotate(0deg) scale(1); filter: invert(0); }
-            50% { transform: rotate(180deg) scale(2); filter: invert(1); }
-            100% { transform: rotate(360deg) scale(1); filter: invert(0); }
+            --primary-bg: #0f172a;
+            --accent-1: #38bdf8;
+            --accent-2: #818cf8;
+            --accent-3: #c084fc;
         }
 
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Arial Black', Gadget, sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
+            background-color: var(--primary-bg);
             overflow: hidden;
-            animation: trippy-bg 0.2s infinite, earthquake 0.1s infinite;
-            background-color: black;
+            color: white;
+        }
+
+        /* Fond avec des vagues de couleurs douces et fluides */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0f172a, #1e293b, #334155);
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: move 20s infinite alternate ease-in-out;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--accent-3), #f472b6);
+            animation: move 15s infinite alternate-reverse ease-in-out;
+            top: 20%;
+            left: 30%;
+        }
+
+        @keyframes move {
+            0% { transform: translate(-10%, -10%) rotate(0deg) scale(1); }
+            50% { transform: translate(20%, 10%) rotate(180deg) scale(1.2); }
+            100% { transform: translate(-5%, 20%) rotate(360deg) scale(0.9); }
         }
 
         .container {
-            position: relative;
             text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: invert(100%) blur(10px);
-            border-radius: 50%;
-            border: 20px dotted white;
-            z-index: 10;
-            box-shadow: 0 0 100px #fff, 0 0 200px #ff00ff;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 80%;
         }
 
         h1 {
-            font-size: 6rem;
-            line-height: 0.9;
+            font-size: 4.5rem;
             margin: 0;
-            animation: strobe 0.1s infinite;
+            font-weight: 900;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin: 20px 0 40px;
+        }
+
+        .shortcuts {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .key-group {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .key-group:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .os-name {
+            display: block;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: -5px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: var(--accent-1);
         }
 
-        .shortcut {
-            margin-top: 30px;
-            font-size: 2.5rem;
-            background: #fff;
-            color: #000;
-            padding: 15px 30px;
-            display: inline-block;
-            border-radius: 10px;
-            box-shadow: 20px 20px 0px #ff00ff, -20px -20px 0px #00ffff;
-            animation: earthquake 0.05s infinite alternate;
+        kbd {
+            font-family: inherit;
+            background: #1e293b;
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 0 #000;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        /* Spirales multiples */
-        .spiral {
-            position: absolute;
-            width: 300vw;
-            height: 300vh;
-            background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
-            animation: hyper-spin 2s linear infinite;
-            z-index: -1;
-            opacity: 0.8;
+        /* Animation de flottement douce pour le conteneur */
+        .floating {
+            animation: float 6s infinite ease-in-out;
         }
 
-        .spiral-rev {
-            position: absolute;
-            width: 250vw;
-            height: 250vh;
-            background: repeating-conic-gradient(from 0deg, #000 0deg 10deg, #fff 10deg 20deg);
-            animation: hyper-spin 1.5s linear infinite reverse;
-            z-index: -2;
-            opacity: 0.5;
-        }
-
-        /* Overlay de grain/bruit */
-        .noise {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://media.giphy.com/media/oEI9uWUicG3V6/giphy.gif');
-            opacity: 0.2;
-            pointer-events: none;
-            z-index: 100;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
 
-    <div class="noise"></div>
-    <div class="spiral"></div>
-    <div class="spiral-rev"></div>
+    <div class="background"></div>
+    <div class="blob"></div>
+    <div class="blob-2"></div>
 
-    <div class="container">
-        <h1>VERROUILLE<br>TON POSTE !</h1>
-        <div class="shortcut">
-            <strong>WIN + L</strong><br>
-            <small>ou</small><br>
-            <strong>CTRL + ALT + L</strong>
+    <div class="container floating">
+        <h1>VERROUILLE TON POSTE</h1>
+        <p>Un simple geste pour protéger tes données.</p>
+        
+        <div class="shortcuts">
+            <div class="key-group">
+                <span class="os-name">Windows</span>
+                <kbd>Win</kbd> + <kbd>L</kbd>
+            </div>
+            <div class="key-group">
+                <span class="os-name">Linux</span>
+                <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd>
+            </div>
         </div>
     </div>
-
-    <script>
-        // Changement aléatoire de la vitesse pour plus de chaos
-        setInterval(() => {
-            document.body.style.animationDuration = (Math.random() * 0.3 + 0.05) + 's';
-        }, 500);
-    </script>
 
 </body>
 </html>

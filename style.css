@@ -70,3 +70,21 @@ h1 {
 @keyframes spin {
     100% { transform: rotate(360deg); }
 }
+
+/* Style pour le cadenas qui suit la souris */
+#cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 3rem;
+    pointer-events: none; /* Empêche le cadenas de gêner les clics */
+    z-index: 9999;
+    transform: translate(-50%, -50%); /* Centre le cadenas sur le curseur */
+    transition: transform 0.1s ease-out;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+}
+
+/* Cache le curseur par défaut pour plus de style */
+body {
+    cursor: none;
+}

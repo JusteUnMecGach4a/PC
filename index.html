@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <div id="cursor-follower">🔒</div>
     <div class="spiral"></div>
 
     <div class="container">
@@ -16,6 +17,18 @@
             <strong>Win + L</strong> ou <strong>Ctrl + Alt + L</strong>
         </div>
     </div>
+
+    <script>
+        const follower = document.getElementById('cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            // Utilise requestAnimationFrame pour plus de fluidité
+            window.requestAnimationFrame(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            });
+        });
+    </script>
 
 </body>
 </html>

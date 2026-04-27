@@ -3,166 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SÉCURITÉ - POSTE NON VERROUILLÉ</title>
-    <style>
-        :root {
-            --primary-bg: #0f172a;
-            --accent-1: #38bdf8;
-            --accent-2: #818cf8;
-            --accent-3: #c084fc;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Outfit', 'Inter', sans-serif;
-            background-color: var(--primary-bg);
-            overflow: hidden;
-            color: white;
-        }
-
-        /* Fond avec des vagues de couleurs douces et fluides */
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #0f172a, #1e293b, #334155);
-            z-index: -1;
-        }
-
-        .blob {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
-            filter: blur(80px);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: move 20s infinite alternate ease-in-out;
-        }
-
-        .blob-2 {
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg, var(--accent-3), #f472b6);
-            animation: move 15s infinite alternate-reverse ease-in-out;
-            top: 20%;
-            left: 30%;
-        }
-
-        @keyframes move {
-            0% { transform: translate(-10%, -10%) rotate(0deg) scale(1); }
-            50% { transform: translate(20%, 10%) rotate(180deg) scale(1.2); }
-            100% { transform: translate(-5%, 20%) rotate(360deg) scale(0.9); }
-        }
-
-        .container {
-            text-align: center;
-            padding: 60px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-width: 80%;
-        }
-
-        h1 {
-            font-size: 4.5rem;
-            margin: 0;
-            font-weight: 900;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -2px;
-            line-height: 1.1;
-        }
-
-        p {
-            font-size: 1.5rem;
-            color: #94a3b8;
-            margin: 20px 0 40px;
-        }
-
-        .shortcuts {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .key-group {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .key-group:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .os-name {
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            color: var(--accent-1);
-        }
-
-        kbd {
-            font-family: inherit;
-            background: #1e293b;
-            padding: 5px 12px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            box-shadow: 0 4px 0 #000;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Animation de flottement douce pour le conteneur */
-        .floating {
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-    </style>
+    <title>Sécurité Poste de Travail | PC-1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="background"></div>
-    <div class="blob"></div>
-    <div class="blob-2"></div>
-
-    <div class="container floating">
-        <h1>VERROUILLE TON POSTE</h1>
-        <p>Un simple geste pour protéger tes données.</p>
-        
-        <div class="shortcuts">
-            <div class="key-group">
-                <span class="os-name">Windows</span>
-                <kbd>Win</kbd> + <kbd>L</kbd>
-            </div>
-            <div class="key-group">
-                <span class="os-name">Linux</span>
-                <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd>
-            </div>
-        </div>
+    <div class="background-wrapper">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
+
+    <main class="main-card">
+        <header>
+            <div class="icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+            </div>
+            <h1>Sécurisez votre espace</h1>
+            <p>Partez l'esprit tranquille. Un simple raccourci suffit pour protéger votre session et vos données.</p>
+        </header>
+
+        <section class="shortcuts-grid">
+            <div class="shortcut-item">
+                <div class="os-info">
+                    <span class="os-label">Windows</span>
+                    <span class="os-desc">Verrouillage rapide</span>
+                </div>
+                <div class="keys">
+                    <kbd>Win</kbd>
+                    <span class="plus">+</span>
+                    <kbd>L</kbd>
+                </div>
+            </div>
+
+            <div class="shortcut-item">
+                <div class="os-info">
+                    <span class="os-label">Linux / Ubuntu</span>
+                    <span class="os-desc">Session sécurisée</span>
+                </div>
+                <div class="keys">
+                    <kbd>Ctrl</kbd>
+                    <span class="plus">+</span>
+                    <kbd>Alt</kbd>
+                    <span class="plus">+</span>
+                    <kbd>L</kbd>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Un réflexe essentiel pour la sécurité de tous.</p>
+        </footer>
+    </main>
 
 </body>
 </html>

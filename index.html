@@ -33,7 +33,7 @@
             font-family: 'Arial Black', Gadget, sans-serif;
             overflow: hidden;
             animation: trippy-bg 2s infinite alternate ease-in-out;
-            cursor: none; /* Toujours utile pour le cadenas */
+            cursor: none;
         }
 
         .container {
@@ -79,7 +79,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Garde le cadenas car c'était la demande précédente */
         #cursor-follower {
             position: fixed;
             top: 0;
@@ -91,6 +90,11 @@
             transition: transform 0.1s ease-out;
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
+
+        /* Pour cacher le raccourci au début avant la détection JS */
+        #os-shortcut {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -101,19 +105,40 @@
     <div class="container">
         <h1>VERROUILLE<br>TON POSTE !</h1>
         <div class="shortcut">
-            <strong>Win + L</strong> ou <strong>Ctrl + Alt + L</strong>
+            <span id="os-shortcut">Chargement du raccourci...</span>
         </div>
     </div>
 
     <script>
+        // Suivi de la souris
         const follower = document.getElementById('cursor-follower');
-        
         document.addEventListener('mousemove', (e) => {
             window.requestAnimationFrame(() => {
                 follower.style.left = e.clientX + 'px';
                 follower.style.top = e.clientY + 'px';
             });
         });
+
+        // Détection de l'OS
+        function detectOS() {
+            const userAgent = window.navigator.userAgent;
+            const platform = window.navigator.platform;
+            const osShortcut = document.getElementById('os-shortcut');
+
+            if (platform.indexOf('Win') !== -1) {
+                osShortcut.innerHTML = 'Win + L';
+            } else if (platform.indexOf('Linux') !== -1) {
+                // LMDE utilise souvent Ctrl + Alt + L (Cinnamon)
+                osShortcut.innerHTML = 'Ctrl + Alt + L';
+            } else if (platform.indexOf('Mac') !== -1) {
+                osShortcut.innerHTML = 'Cmd + Ctrl + Q';
+            } else {
+                // Fallback si non détecté
+                osShortcut.innerHTML = 'Win + L ou Ctrl + Alt + L';
+            }
+        }
+
+        detectOS();
     </script>
 
 </body>

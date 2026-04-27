@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALERTE SÉCURITÉ</title>
+    <title>ALERTE SÉCURITÉ - VERROUILLE TON POSTE !</title>
     <style>
-        /* Animation du fond qui change de couleur */
+        /* Animation du fond qui change de couleur - Compatible tous navigateurs */
         @keyframes trippy-bg {
             0% { background-color: #ff00ff; }
             25% { background-color: #00ffff; }
@@ -23,73 +23,116 @@
             100% { transform: scale(1) rotate(0deg); color: #fff; text-shadow: 5px 5px #ff0000; }
         }
 
-        body {
+        /* Reset de base pour compatibilité maximum */
+        html, body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Arial Black', Gadget, sans-serif;
-            overflow: hidden;
             animation: trippy-bg 2s infinite alternate ease-in-out;
-            cursor: none; /* Cache le curseur par défaut */
+            cursor: none; /* Cache le curseur sur Windows & Linux */
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            /* Fallback pour les navigateurs ne supportant pas backdrop-filter */
+            background: rgba(255, 255, 255, 0.1) \9; 
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             border-radius: 50px;
-            border: 10px dashed white;
+            border: 8px dashed white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 90vw;
         }
 
         h1 {
-            font-size: 5rem;
+            font-size: clamp(2rem, 10vw, 5rem); /* Taille adaptative Windows/LMDE/Mobile */
             line-height: 1;
             margin: 0;
             animation: strobe 0.5s infinite;
             text-transform: uppercase;
         }
 
-        .shortcut {
+        .shortcut-container {
             margin-top: 30px;
-            font-size: 2rem;
-            background: white;
-            color: black;
-            padding: 10px 20px;
-            display: inline-block;
-            border-radius: 10px;
-            box-shadow: 10px 10px 0px #000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* Effet de spirale en arrière-plan */
+        .shortcut {
+            font-size: clamp(1rem, 5vw, 2rem);
+            background: white;
+            color: black;
+            padding: 15px 25px;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 8px 8px 0px #000;
+            font-weight: bold;
+        }
+
+        .os-label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        /* Spirale en arrière-plan */
         .spiral {
             position: absolute;
-            width: 200vw;
-            height: 200vh;
+            top: 50%;
+            left: 50%;
+            width: 250vmax; /* Utilise vmax pour être sûr de couvrir tout l'écran sur tous les ratios */
+            height: 250vmax;
             background: conic-gradient(from 0deg, red, yellow, lime, aqua, blue, magenta, red);
-            animation: spin 3s linear infinite;
+            animation: spin 5s linear infinite;
             z-index: -1;
             opacity: 0.4;
+            transform-origin: center center;
+            transform: translate(-50%, -50%);
         }
 
         @keyframes spin {
-            100% { transform: rotate(360deg); }
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* Style pour le cadenas qui suit la souris */
+        /* Cadenas qui suit la souris */
         #cursor-follower {
             position: fixed;
             top: 0;
             left: 0;
-            font-size: 3rem;
+            font-size: 4rem;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+            /* Transition plus courte pour une sensation de réactivité sur Linux */
+            transition: transform 0.05s linear;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+            will-change: left, top; /* Optimisation pour LMDE */
+        }
+
+        /* Mode "Safe" pour les yeux si besoin via réduction des mouvements (système) */
+        @media (prefers-reduced-motion: reduce) {
+            .spiral, h1, body, #cursor-follower {
+                animation: none;
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -98,21 +141,37 @@
     <div id="cursor-follower">🔒</div>
     <div class="spiral"></div>
 
-    <div class="container">
+    <main class="container">
         <h1>VERROUILLE<br>TON POSTE !</h1>
-        <div class="shortcut">
-            <strong>Win + L</strong> ou <strong>Ctrl + Alt + L</strong>
+        
+        <div class="shortcut-container">
+            <div class="shortcut">
+                <span class="os-label">Windows</span>
+                Win + L
+            </div>
+            <div class="shortcut">
+                <span class="os-label">Linux (LMDE / Cinnamon)</span>
+                Ctrl + Alt + L
+            </div>
         </div>
-    </div>
+    </main>
 
     <script>
         const follower = document.getElementById('cursor-follower');
         
+        // Utilisation de clientX/Y pour compatibilité parfaite
         document.addEventListener('mousemove', (e) => {
             window.requestAnimationFrame(() => {
                 follower.style.left = e.clientX + 'px';
                 follower.style.top = e.clientY + 'px';
             });
+        });
+
+        // Touche Echap pour retrouver le curseur si besoin (debug)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                document.body.style.cursor = 'default';
+            }
         });
     </script>
 

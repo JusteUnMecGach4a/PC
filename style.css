@@ -1,0 +1,72 @@
+/* Animation du fond qui change de couleur */
+@keyframes trippy-bg {
+    0% { background-color: #ff00ff; }
+    25% { background-color: #00ffff; }
+    50% { background-color: #ffff00; }
+    75% { background-color: #00ff00; }
+    100% { background-color: #ff00ff; }
+}
+
+/* Animation de distorsion et de couleur du texte */
+@keyframes strobe {
+    0% { transform: scale(1) rotate(0deg); color: #fff; text-shadow: 5px 5px #ff0000; }
+    25% { transform: scale(1.1) rotate(2deg); color: #000; text-shadow: -5px -5px #00ff00; }
+    50% { transform: scale(0.9) rotate(-2deg); color: #fff; text-shadow: 8px -2px #0000ff; }
+    75% { transform: scale(1.05) rotate(1deg); color: #000; text-shadow: -3px 6px #ff00ff; }
+    100% { transform: scale(1) rotate(0deg); color: #fff; text-shadow: 5px 5px #ff0000; }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    overflow: hidden;
+    animation: trippy-bg 2s infinite alternate ease-in-out;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+    border: 10px dashed white;
+}
+
+h1 {
+    font-size: 5rem;
+    line-height: 1;
+    margin: 0;
+    animation: strobe 0.5s infinite;
+    text-transform: uppercase;
+}
+
+.shortcut {
+    margin-top: 30px;
+    font-size: 2rem;
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0px #000;
+}
+
+/* Effet de spirale en arrière-plan */
+.spiral {
+    position: absolute;
+    width: 200vw;
+    height: 200vh;
+    background: conic-gradient(from 0deg, red, yellow, lime, aqua, blue, magenta, red);
+    animation: spin 3s linear infinite;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}

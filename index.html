@@ -25,43 +25,135 @@
 
         body {
             margin: 0;
-            padding: 0;
-            height: 100vh;
+            padding: 40px 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Arial Black', Gadget, sans-serif;
-            overflow: hidden;
+            overflow-y: auto;
             animation: trippy-bg 2s infinite alternate ease-in-out;
             cursor: none;
         }
 
         .container {
             text-align: center;
-            padding: 20px;
+            padding: 40px 30px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
             border-radius: 50px;
             border: 10px dashed white;
+            max-width: 650px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 5rem;
-            line-height: 1;
+            font-size: 4rem;
+            line-height: 1.1;
             margin: 0;
             animation: strobe 0.5s infinite;
             text-transform: uppercase;
         }
 
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
         .shortcut {
-            margin-top: 30px;
-            font-size: 2rem;
+            margin-top: 25px;
+            font-size: 1.8rem;
             background: white;
             color: black;
             padding: 10px 20px;
             display: inline-block;
             border-radius: 10px;
             box-shadow: 10px 10px 0px #000;
+        }
+
+        /* Raisons de verrouiller son poste */
+        .reasons-container {
+            margin-top: 35px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            text-align: left;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .reasons-container:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .reasons-container h2 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            text-shadow: 2px 2px 0px #000;
+            letter-spacing: 1px;
+            color: #ffff00;
+            line-height: 1.3;
+        }
+
+        .reasons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .reasons-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: background 0.2s ease;
+        }
+
+        .reasons-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .reason-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .reason-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .reason-content strong {
+            font-size: 1.05rem;
+            color: #ff00ff;
+            text-shadow: 1px 1px 0px #000;
+        }
+
+        .reason-content span {
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            line-height: 1.4;
         }
 
         /* Effet de spirale en arrière-plan */
@@ -106,6 +198,47 @@
         <h1>VERROUILLE<br>TON POSTE !</h1>
         <div class="shortcut">
             <span id="os-shortcut">Chargement du raccourci...</span>
+        </div>
+
+        <div class="reasons-container">
+            <h2>Pourquoi verrouiller son poste ?</h2>
+            <ul class="reasons-list">
+                <li>
+                    <span class="reason-icon">🛡️</span>
+                    <div class="reason-content">
+                        <strong>Confidentialité des données</strong>
+                        <span>Protège vos fichiers, e-mails et codes sources des regards indiscrets.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="reason-icon">🎭</span>
+                    <div class="reason-content">
+                        <strong>Usurpation d'identité</strong>
+                        <span>Évite qu'un collègue n'envoie des messages ou un e-mail de "croissantage" à votre place.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="reason-icon">🦠</span>
+                    <div class="reason-content">
+                        <strong>Sécurité du système</strong>
+                        <span>Empêche l'installation de malwares ou la suppression involontaire/volontaire de vos fichiers.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="reason-icon">💼</span>
+                    <div class="reason-content">
+                        <strong>Responsabilité professionnelle</strong>
+                        <span>Votre session = votre nom. Vous êtes tenu responsable de toutes les actions menées depuis votre compte.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="reason-icon">⚖️</span>
+                    <div class="reason-content">
+                        <strong>Conformité légale & RGPD</strong>
+                        <span>Garantit la protection des données personnelles de vos collègues, clients et usagers.</span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 

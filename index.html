@@ -133,6 +133,21 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* Mise en avant de l'alerte ENT / Pronote */
+        .reasons-list li.highlight-alert {
+            background: rgba(255, 0, 85, 0.25);
+            border: 2px solid #ff0055;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+        }
+
+        .reasons-list li.highlight-alert:hover {
+            background: rgba(255, 0, 85, 0.35);
+        }
+
+        .reasons-list li.highlight-alert strong {
+            color: #ffff00;
+        }
+
         .reason-icon {
             font-size: 1.6rem;
             line-height: 1;
@@ -203,6 +218,13 @@
         <div class="reasons-container">
             <h2>Pourquoi verrouiller son poste ?</h2>
             <ul class="reasons-list">
+                <li class="highlight-alert">
+                    <span class="reason-icon">🎓</span>
+                    <div class="reason-content">
+                        <strong>Déconnexion ENT & Pronote (ALERTE PROFS !)</strong>
+                        <span>Déconnectez-vous impérativement de <strong>Mon Bureau Numérique</strong> et de <strong>Pronote</strong> ! Un accès enseignant laissé ouvert expose les notes, appréciations, sanctions et données sensibles des élèves (bonjour les 20/20 magiques et le chaos administratif).</span>
+                    </div>
+                </li>
                 <li>
                     <span class="reason-icon">🛡️</span>
                     <div class="reason-content">
@@ -214,7 +236,7 @@
                     <span class="reason-icon">🎭</span>
                     <div class="reason-content">
                         <strong>Usurpation d'identité</strong>
-                        <span>Évite qu'un collègue n'envoie des messages ou un e-mail de "croissantage" à votre place. Par exemeple : Paul ne verrouille pas son PC et Johan va utiliser son compte pour envoyer à la classe entière : « Demain, je ramène les croissants ».</span>
+                        <span>Évite qu'un collègue n'envoie des messages ou un e-mail de "croissantage" à votre place. Par exemple : Paul ne verrouille pas son PC et Johan va utiliser son compte pour envoyer à la classe entière : « Demain, je ramène les croissants ».</span>
                     </div>
                 </li>
                 <li>
@@ -235,7 +257,7 @@
                     <span class="reason-icon">⚖️</span>
                     <div class="reason-content">
                         <strong>Conformité légale & RGPD</strong>
-                        <span>Garantit la protection des données personnelles de vos collègues, clients et usagers.</span>
+                        <span>Garantit la protection des données personnelles de vos collègues, élèves et usagers.</span>
                     </div>
                 </li>
             </ul>
@@ -254,7 +276,6 @@
 
         // Détection de l'OS
         function detectOS() {
-            const userAgent = window.navigator.userAgent;
             const platform = window.navigator.platform;
             const osShortcut = document.getElementById('os-shortcut');
 
